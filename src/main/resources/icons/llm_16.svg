@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
+ <g class="layer">
+  <title>Layer 1</title>
+  <g fill="none" id="svg_1" transform="matrix(1 0 0 1 1 1)">
+   <rect fill="#000" height="14" id="svg_2" width="14"/>
+   <rect fill="#FFFEFE" height="1" id="svg_3" width="5" x="1" y="11"/>
+   <line fill="none" id="svg_7" transform="matrix(1 0 0 1 0 0)" x1="22.39" x2="22.29" y1="11.77" y2="11.77"/>
+   <text fill="#ffffff" font-family="Cursive" font-size="7" id="svg_8" stroke-width="0" text-anchor="middle" x="7.17" xml:space="preserve" y="8.84">LLM</text>
+  </g>
+ </g>
+</svg>
