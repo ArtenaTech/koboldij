@@ -1,0 +1,81 @@
+<idea-plugin>
+    <id>com.artena.llm.ide.koboldij</id>
+
+    <name>KoboldIJ</name>
+
+    <vendor email="support@artenatech.com" url="https://www.artenatech.com">ArtenaTech</vendor>
+
+    <idea-version since-build="223.*" until-build="224.3"/>
+
+    <actions>
+        <action id="EditorBasics.LLMSimpleAction"
+                class="com.artena.llm.ide.koboldij.SimpleRequestAction"
+                text="Replace Text by LLM Query"
+                description="Replaces selected text with result of LLM query."
+                icon="PluginIcons.popup_icon">
+            <add-to-group group-id="EditorPopupMenu" anchor="first"/>
+        </action>
+
+        <action id="EditorBasics.LLMCustomAction"
+                class="com.artena.llm.ide.koboldij.CustomRequestAction"
+                text="LLM Query"
+                description="Generate code by LLM query."
+                icon="PluginIcons.popup_icon">
+            <add-to-group group-id="EditorPopupMenu" anchor="first"/>
+        </action>
+
+        <group id="com.artena.llm.ide.koboldij.DynamicActionGroup"
+               class="com.artena.llm.ide.koboldij.DynamicActionGroup"
+               text="Template of LLM Query"
+               popup="true"
+               icon="PluginIcons.popup_icon">
+            <add-to-group
+                    group-id="EditorPopupMenu"
+                    anchor="after"
+                    relative-to-action="EditorBasics.LLMSimpleAction"/>
+        </group>
+    </actions>
+
+    <description><![CDATA[
+<h3 id="overview">Overview</h3>
+<p>The KoboldIJ plugin for IntelliJ IDEA provides seamless integration with a self-hosted Large Language Model (LLM) running on the Koboldcpp runtime. This allows developers to perform fast, secure, and free LLM queries directly from their IDE, without relying on external APIs or publicly available LLM rules. You can use any publicly available LLM model in GGUF format, including models customized for your specific needs using LoRA (Low-Rank Adaptation) technology. Koboldcpp runs on all major operating systems, requiring minimal setup. Simply download the model and start using it to enhance your coding experience with local LLMs.</p>
+<h3 id="key-features">Key Features</h3>
+<ul>
+<li>Easy Setup.<br>
+Easily set up the plugin and connect to Koboldcpp without complicated installations.</li>
+<li>Perform Common Tasks.<br>
+The main goal is to perform common tasks intelligently.</li>
+<li>Compatibility.<br>
+Koboldcpp works with a variety of popular operating systems, allowing you to download models and use them immediately.</li>
+<li>Local and secure. <br>
+With a locally hosted LLM, you have full control over your data, ensuring security and independence from external services.</li>
+</ul>
+<h3 id="plugin-workflow">Plugin workflow</h3>
+<ul>
+<li>Inline hints. <br>
+Write a query directly in your code, and the plugin will replace it with an LLM response.</li>
+<li>Advanced queries. <br>
+For more complex queries, the second mode (accessible via the menu) opens a dedicated LLM query window.</li>
+<li>Reusable queries. <br>
+The third mode allows you to save and reuse LLM queries for future use.</li>
+<li>Interactive chat mode. <br>
+The fourth mode offers conversation-style interaction to fine-tune queries, similar to a traditional chatbot.</li>
+</ul>
+<p>For more information, visit our <a href="https://artenatech.com/index.php/koboldij-llm-plugin-for-ide/">website</a></p>
+  ]]></description>
+
+    <depends>com.intellij.modules.platform</depends>
+    <depends>com.intellij.modules.java</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <applicationConfigurable parentId="tools" instance="com.artena.llm.ide.config.AppSettingsConfigurable"
+                                 id="org.intellij.sdk.settings.AppSettingsConfigurable"
+                                 displayName="KoboldIJ Global Settings"/>
+        <applicationService serviceImplementation="com.artena.llm.ide.config.AppSettings"/>
+
+        <postStartupActivity implementation="com.artena.llm.ide.notification.ShowNotificationActivity"/>
+
+        <notification.parentGroup id="llm.notifications" title="LLM notifications"/>
+    </extensions>
+
+</idea-plugin>
